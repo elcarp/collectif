@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      grayscale: {
+        50: '50%'
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

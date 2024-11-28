@@ -1,324 +1,155 @@
 'use client'
-import React, { useRef, useEffect, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import React from 'react'
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  MotionValue,
+} from 'framer-motion'
 import Image from 'next/image'
-import { cn } from '~lib/utils'
-import Balancer from 'react-wrap-balancer'
 import Link from 'next/link'
 
-export default function Hero() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const parentRef = useRef<HTMLDivElement>(null)
+export default function HeroParallax({
+  products,
+}: {
+  products: {
+    title: string
+    link: string
+    thumbnail: string
+  }[]
+}) {
+  const firstRow = products.slice(0, 5)
+  const secondRow = products.slice(5, 10)
+  const thirdRow = products.slice(10, 15)
+  const ref = React.useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start start', 'end start'],
+  })
 
+  const springConfig = { stiffness: 300, damping: 30, bounce: 100 }
+
+  const translateX = useSpring(
+    useTransform(scrollYProgress, [0, 1], [0, 1000]),
+    springConfig
+  )
+  const translateXReverse = useSpring(
+    useTransform(scrollYProgress, [0, 1], [0, -1000]),
+    springConfig
+  )
+  const rotateX = useSpring(
+    useTransform(scrollYProgress, [0, 0.2], [15, 0]),
+    springConfig
+  )
+  const opacity = useSpring(
+    useTransform(scrollYProgress, [0, 0.2], [0.2, 1]),
+    springConfig
+  )
+  const rotateZ = useSpring(
+    useTransform(scrollYProgress, [0, 0.2], [20, 0]),
+    springConfig
+  )
+  const translateY = useSpring(
+    useTransform(scrollYProgress, [0, 0.2], [-700, 500]),
+    springConfig
+  )
   return (
     <div
-      ref={parentRef}
-      className='relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-20 md:px-8 md:py-40'>
-      <BackgroundGrids />
-      <CollisionMechanism
-        beamOptions={{
-          initialX: -400,
-          translateX: 600,
-          duration: 7,
-          repeatDelay: 3,
+      ref={ref}
+      className='h-[300vh] py-40 overflow-hidden  antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]'>
+      <Header />
+      <motion.div
+        style={{
+          rotateX,
+          rotateZ,
+          translateY,
+          opacity,
         }}
-        containerRef={containerRef}
-        parentRef={parentRef}
-      />
-      <CollisionMechanism
-        beamOptions={{
-          initialX: -200,
-          translateX: 800,
-          duration: 4,
-          repeatDelay: 3,
-        }}
-        containerRef={containerRef}
-        parentRef={parentRef}
-      />
-      <CollisionMechanism
-        beamOptions={{
-          initialX: 200,
-          translateX: 1200,
-          duration: 5,
-          repeatDelay: 3,
-        }}
-        containerRef={containerRef}
-        parentRef={parentRef}
-      />
-      <CollisionMechanism
-        containerRef={containerRef}
-        parentRef={parentRef}
-        beamOptions={{
-          initialX: 400,
-          translateX: 1400,
-          duration: 6,
-          repeatDelay: 3,
-        }}
-      />
+        className=''>
+        <motion.div className='flex flex-row-reverse space-x-reverse space-x-20 mb-20'>
+          {firstRow.map((product) => (
+            <ProductCard
+              product={product}
+              translate={translateX}
+              key={product.title}
+            />
+          ))}
+        </motion.div>
+        <motion.div className='flex flex-row  mb-20 space-x-20 '>
+          {secondRow.map((product) => (
+            <ProductCard
+              product={product}
+              translate={translateXReverse}
+              key={product.title}
+            />
+          ))}
+        </motion.div>
+        <motion.div className='flex flex-row-reverse space-x-reverse space-x-20'>
+          {thirdRow.map((product) => (
+            <ProductCard
+              product={product}
+              translate={translateX}
+              key={product.title}
+            />
+          ))}
+        </motion.div>
+      </motion.div>
+    </div>
+  )
+}
 
-      <h2 className='text-balance relative z-50 mx-auto mb-4 mt-4 max-w-4xl text-center text-3xl font-semibold tracking-tight text-gray-700 dark:text-neutral-300 md:text-7xl'>
-        <Balancer>
-          We help make your website and app ideas{' '}
-          <div className='relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]'>
-            <div className='text-yellow-500 [text-shadow:0_0_rgba(0,0,0,0.1)] dark:text-white'>
-              <span className=''>a reality.</span>
-            </div>
-          </div>
-        </Balancer>
-      </h2>
-      <p className='relative z-50 mx-auto mt-4 max-w-lg px-4 text-center text-base/6 text-gray-600 dark:text-gray-200'>
-        We are a collective of engineers, designers, testers and project managers who create
-        solutions with a vision for the future.
+export const Header = () => {
+  return (
+    <div className='max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full  left-0 top-0'>
+      <h1 className='text-2xl md:text-7xl font-bold dark:text-white'>
+        The Ultimate <br /> development studio
+      </h1>
+      <p className='max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200'>
+        We build beautiful products with the latest technologies and frameworks.
+        We are a team of passionate developers and designers that love to build
+        amazing products.
       </p>
-      <div className='mb-10 mt-8 flex w-full flex-col items-center justify-center gap-4 px-8 sm:flex-row md:mb-20'>
-        <Link
-          href='#'
-          className='group relative z-20 flex h-10 w-full cursor-pointer items-center justify-center space-x-2 rounded-lg bg-black p-px px-4 py-2 text-center text-sm font-semibold leading-6 text-white no-underline transition duration-200 dark:bg-white dark:text-black sm:w-52'>
-          Let's chat
-        </Link>
-        <Link
-          href='/pricing'
-          className='group relative z-20 flex h-10 w-full cursor-pointer items-center justify-center space-x-2 rounded-lg bg-white p-px px-4 py-2 text-sm font-semibold leading-6 text-black no-underline shadow-input transition duration-200 hover:-translate-y-0.5 dark:bg-neutral-800 dark:text-white sm:w-52'>
-          Learn more
-        </Link>
-      </div>
-      <div
-        ref={containerRef}
-        className='relative opacity-0 mx-auto max-w-7xl rounded-[32px] border border-neutral-200/50 bg-neutral-100 p-2 backdrop-blur-lg dark:border-neutral-700 dark:bg-neutral-800/50 md:p-4'>
-        {/* <div className='rounded-[24px] border border-neutral-200 bg-white p-2 dark:border-neutral-700 dark:bg-black'>
-          <Image
-            src='https://assets.aceternity.com/pro/aceternity-landing.webp'
-            alt='header'
-            width={1920}
-            height={1080}
-            className='rounded-[20px]'
-          />
-        </div> */}
-      </div>
     </div>
   )
 }
 
-const BackgroundGrids = () => {
-  return (
-    <div className='pointer-events-none absolute inset-0 z-0 grid h-full w-full -rotate-45 transform select-none grid-cols-2 gap-10 md:grid-cols-4'>
-      <div className='relative h-full w-full'>
-        <GridLineVertical className='left-0' />
-        <GridLineVertical className='left-auto right-0' />
-      </div>
-      <div className='relative h-full w-full'>
-        <GridLineVertical className='left-0' />
-        <GridLineVertical className='left-auto right-0' />
-      </div>
-      <div className='relative h-full w-full bg-gradient-to-b from-transparent via-neutral-100 to-transparent dark:via-neutral-800'>
-        <GridLineVertical className='left-0' />
-        <GridLineVertical className='left-auto right-0' />
-      </div>
-      <div className='relative h-full w-full'>
-        <GridLineVertical className='left-0' />
-        <GridLineVertical className='left-auto right-0' />
-      </div>
-    </div>
-  )
-}
-
-const CollisionMechanism = React.forwardRef<
-  HTMLDivElement,
-  {
-    containerRef: React.RefObject<HTMLDivElement>
-    parentRef: React.RefObject<HTMLDivElement>
-    beamOptions?: {
-      initialX?: number
-      translateX?: number
-      initialY?: number
-      translateY?: number
-      rotate?: number
-      className?: string
-      duration?: number
-      delay?: number
-      repeatDelay?: number
-    }
-  }
->(({ parentRef, containerRef, beamOptions = {} }, ref) => {
-  const beamRef = useRef<HTMLDivElement>(null)
-  const [collision, setCollision] = useState<{
-    detected: boolean
-    coordinates: { x: number; y: number } | null
-  }>({
-    detected: false,
-    coordinates: null,
-  })
-  const [beamKey, setBeamKey] = useState(0)
-  const [cycleCollisionDetected, setCycleCollisionDetected] = useState(false)
-
-  useEffect(() => {
-    const checkCollision = () => {
-      if (
-        beamRef.current &&
-        containerRef.current &&
-        parentRef.current &&
-        !cycleCollisionDetected
-      ) {
-        const beamRect = beamRef.current.getBoundingClientRect()
-        const containerRect = containerRef.current.getBoundingClientRect()
-        const parentRect = parentRef.current.getBoundingClientRect()
-
-        if (beamRect.bottom >= containerRect.top) {
-          const relativeX = beamRect.left - parentRect.left + beamRect.width / 2
-          const relativeY = beamRect.bottom - parentRect.top
-
-          setCollision({
-            detected: true,
-            coordinates: {
-              x: relativeX,
-              y: relativeY,
-            },
-          })
-          setCycleCollisionDetected(true)
-          if (beamRef.current) {
-            beamRef.current.style.opacity = '0'
-          }
-        }
-      }
-    }
-
-    const animationInterval = setInterval(checkCollision, 50)
-
-    return () => clearInterval(animationInterval)
-  }, [cycleCollisionDetected, containerRef])
-
-  useEffect(() => {
-    if (collision.detected && collision.coordinates) {
-      setTimeout(() => {
-        setCollision({ detected: false, coordinates: null })
-        setCycleCollisionDetected(false)
-        // Set beam opacity to 0
-        if (beamRef.current) {
-          beamRef.current.style.opacity = '1'
-        }
-      }, 2000)
-
-      // Reset the beam animation after a delay
-      setTimeout(() => {
-        setBeamKey((prevKey) => prevKey + 1)
-      }, 2000)
-    }
-  }, [collision])
-
-  return (
-    <>
-      <motion.div
-        key={beamKey}
-        ref={beamRef}
-        animate='animate'
-        initial={{
-          translateY: beamOptions.initialY || '-200px',
-          translateX: beamOptions.initialX || '0px',
-          rotate: beamOptions.rotate || -45,
-        }}
-        variants={{
-          animate: {
-            translateY: beamOptions.translateY || '800px',
-            translateX: beamOptions.translateX || '700px',
-            rotate: beamOptions.rotate || -45,
-          },
-        }}
-        transition={{
-          duration: beamOptions.duration || 8,
-          repeat: Infinity,
-          repeatType: 'loop',
-          ease: 'linear',
-          delay: beamOptions.delay || 0,
-          repeatDelay: beamOptions.repeatDelay || 0,
-        }}
-        className={cn(
-          'absolute left-96 top-20 m-auto h-14 w-px rounded-full bg-gradient-to-t from-orange-500 via-yellow-500 to-transparent',
-          beamOptions.className
-        )}
-      />
-      <AnimatePresence>
-        {collision.detected && collision.coordinates && (
-          <Explosion
-            key={`${collision.coordinates.x}-${collision.coordinates.y}`}
-            className=''
-            style={{
-              left: `${collision.coordinates.x + 20}px`,
-              top: `${collision.coordinates.y}px`,
-              transform: 'translate(-50%, -50%)',
-            }}
-          />
-        )}
-      </AnimatePresence>
-    </>
-  )
-})
-
-CollisionMechanism.displayName = 'CollisionMechanism'
-
-const Explosion = ({ ...props }: React.HTMLProps<HTMLDivElement>) => {
-  const spans = Array.from({ length: 20 }, (_, index) => ({
-    id: index,
-    initialX: 0,
-    initialY: 0,
-    directionX: Math.floor(Math.random() * 80 - 40),
-    directionY: Math.floor(Math.random() * -50 - 10),
-  }))
-
-  return (
-    <div {...props} className={cn('absolute z-50 h-2 w-2', props.className)}>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 1, 0] }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 1, ease: 'easeOut' }}
-        className='absolute -inset-x-10 top-0 m-auto h-[4px] w-10 rounded-full bg-gradient-to-r from-transparent via-orange-500 to-transparent blur-sm'></motion.div>
-      {spans.map((span) => (
-        <motion.span
-          key={span.id}
-          initial={{ x: span.initialX, y: span.initialY, opacity: 1 }}
-          animate={{
-            x: span.directionX,
-            y: span.directionY,
-            opacity: 0,
-          }}
-          transition={{ duration: Math.random() * 1.5 + 0.5, ease: 'easeOut' }}
-          className='absolute h-1 w-1 rounded-full bg-gradient-to-b from-orange-500 to-yellow-500'
-        />
-      ))}
-    </div>
-  )
-}
-
-const GridLineVertical = ({
-  className,
-  offset,
+export const ProductCard = ({
+  product,
+  translate,
 }: {
-  className?: string
-  offset?: string
+  product: {
+    title: string
+    link: string
+    thumbnail: string
+  }
+  translate: MotionValue<number>
 }) => {
   return (
-    <div
-      style={
-        {
-          '--background': '#ffffff',
-          '--color': 'rgba(0, 0, 0, 0.2)',
-          '--height': '5px',
-          '--width': '1px',
-          '--fade-stop': '90%',
-          '--offset': offset || '150px', //-100px if you want to keep the line inside
-          '--color-dark': 'rgba(255, 255, 255, 0.3)',
-          maskComposite: 'exclude',
-        } as React.CSSProperties
-      }
-      className={cn(
-        'absolute top-[calc(var(--offset)/2*-1)] h-[calc(100%+var(--offset))] w-[var(--width)]',
-        'bg-[linear-gradient(to_bottom,var(--color),var(--color)_50%,transparent_0,transparent)]',
-        '[background-size:var(--width)_var(--height)]',
-        '[mask:linear-gradient(to_top,var(--background)_var(--fade-stop),transparent),_linear-gradient(to_bottom,var(--background)_var(--fade-stop),transparent),_linear-gradient(black,black)]',
-        '[mask-composite:exclude]',
-        'z-30',
-        'dark:bg-[linear-gradient(to_bottom,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)]',
-        className
-      )}></div>
+    <motion.div
+      style={{
+        x: translate,
+      }}
+      whileHover={{
+        y: -20,
+      }}
+      key={product.title}
+      className='group/product h-96 w-[30rem] relative flex-shrink-0'>
+      <Link
+        href={product.link}
+        className='block group-hover/product:shadow-2xl '>
+        <Image
+          src={product.thumbnail}
+          height='600'
+          width='600'
+          className='object-cover object-left-top absolute h-full w-full inset-0'
+          alt={product.title}
+        />
+      </Link>
+      <div className='absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none'></div>
+      <h2 className='absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white'>
+        {product.title}
+      </h2>
+    </motion.div>
   )
 }
