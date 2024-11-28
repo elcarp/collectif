@@ -9,6 +9,17 @@ import {
 } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Stylish, Roboto } from 'next/font/google'
+
+const stylish = Stylish({
+  weight: '400',
+  subsets: ['latin'],
+})
+
+const roboto = Roboto({
+  weight: '400',
+  subsets: ['latin'],
+})
 
 export default function HeroParallax({
   products,
@@ -102,13 +113,13 @@ export default function HeroParallax({
 export const Header = () => {
   return (
     <div className='max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full  left-0 top-0'>
-      <h1 className='text-2xl md:text-7xl font-bold dark:text-white'>
-        The Ultimate <br /> development studio
+      <h1 className={`${stylish.className} text-center text-2xl md:text-7xl font-bold dark:text-white`}>
+        Collectif Thailand
       </h1>
-      <p className='max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200'>
-        We build beautiful products with the latest technologies and frameworks.
-        We are a team of passionate developers and designers that love to build
-        amazing products.
+      <p className={`${roboto.className} max-w-2xl mx-auto text-center text-base md:text-lg mt-8 dark:text-neutral-200`}>
+        An independent co-operative of talented developers, designers, project
+        managers and more. Your end-to-end partner for fast websites, mobile
+        and software applications.
       </p>
     </div>
   )

@@ -111,9 +111,8 @@ export function FeaturesSection() {
           We love solving a good problem.
         </h2>
         <p className='text-white text-sm md:text-base max-w-md mx-auto mt-4'>
-          And we love delivering the most{' '}
-          <strong>effective and comprehensive</strong> solutions to our clients'
-          digital requirements.
+          And we are passionate about delivering the most{' '}
+          <strong>effective and comprehensive</strong> solutions.
         </p>
       </div>
       <StickyScroll content={features} />
