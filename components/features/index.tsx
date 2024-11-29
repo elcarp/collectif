@@ -1,13 +1,16 @@
 'use client'
-import React, { useRef, useState } from 'react'
+import React, {
+  useRef,
+  // useState
+} from 'react'
 import {
   motion,
   useScroll,
   useTransform,
-  useMotionValueEvent,
+  // useMotionValueEvent,
 } from 'framer-motion'
-import { IconCoffee, IconDeviceLaptop, IconRocket } from '@tabler/icons-react'
-import Image from 'next/image'
+// import { IconCoffee, IconDeviceLaptop, IconRocket } from '@tabler/icons-react'
+// import Image from 'next/image'
 
 interface Feature {
   icon: React.ReactNode
