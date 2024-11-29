@@ -19,9 +19,9 @@ interface Feature {
   content: React.ReactNode
 }
 
-const features: Feature[] = [
-  // ... (keep the existing features array as is)
-]
+// const features: Feature[] = [
+//   // ... (keep the existing features array as is)
+// ]
 
 export function FeaturesSection() {
   // ... (keep the existing FeaturesSection component as is)
