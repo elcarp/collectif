@@ -118,7 +118,7 @@ export const Header = () => {
       </h1>
       <p className={`${roboto.className} max-w-2xl mx-auto text-center text-base md:text-lg mt-8 dark:text-neutral-200`}>
         An independent co-operative of talented developers, designers, project
-        managers and more. Your end-to-end partner for fast websites, mobile
+        managers, QA and more. Your end-to-end partner for fast websites, mobile
         and software applications.
       </p>
     </div>
