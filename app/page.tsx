@@ -1,108 +1,50 @@
-// import { FeaturesSection } from '~components/features'
 import Footer from '~components/footer'
 import Hero from '~components/hero'
 
 export default function Home() {
   const products = [
     {
-      title: 'Moonbeam',
-      link: 'https://gomoonbeam.com',
+      title: `British Women's Group`,
+      link: 'https://bwgbangkok.org/',
       thumbnail:
-        'https://aceternity.com/images/products/thumbnails/new/moonbeam.png',
+        'https://67kbtiuxase3xqul.public.blob.vercel-storage.com/Screenshot%202024-11-30%20at%201.24.25%20PM-0zVCeR58VpmSAdWDtxDpE1CP7giHKR.png',
     },
     {
-      title: 'Cursor',
-      link: 'https://cursor.so',
+      title: 'Lise Carpenter - Freelance Developer',
+      link: 'https://lisecarpenter.com/',
       thumbnail:
-        'https://aceternity.com/images/products/thumbnails/new/cursor.png',
+        'https://67kbtiuxase3xqul.public.blob.vercel-storage.com/Screenshot%202024-11-30%20at%201.26.41%20PM-qySTnLxB8dCeZbj8QIZ5rjofQahwnZ.png',
     },
     {
-      title: 'Rogue',
-      link: 'https://userogue.com',
+      title: 'DeeMoney',
+      link: 'https://staging.site.deemoney.com/',
       thumbnail:
-        'https://aceternity.com/images/products/thumbnails/new/rogue.png',
-    },
-
-    {
-      title: 'Editorially',
-      link: 'https://editorially.org',
-      thumbnail:
-        'https://aceternity.com/images/products/thumbnails/new/editorially.png',
-    },
-    {
-      title: 'Editrix AI',
-      link: 'https://editrix.ai',
-      thumbnail:
-        'https://aceternity.com/images/products/thumbnails/new/editrix.png',
-    },
-    {
-      title: 'Pixel Perfect',
-      link: 'https://app.pixelperfect.quest',
-      thumbnail:
-        'https://aceternity.com/images/products/thumbnails/new/pixelperfect.png',
+        'https://67kbtiuxase3xqul.public.blob.vercel-storage.com/Screenshot%202024-11-30%20at%201.28.30%20PM-VHz3xNjBilqTk1B0Em0Amt5s54htNr.png',
     },
 
     {
-      title: 'Algochurn',
-      link: 'https://algochurn.com',
+      title: 'Caelum Greene',
+      link: 'https://www.caelumgreene.com/',
       thumbnail:
-        'https://aceternity.com/images/products/thumbnails/new/algochurn.png',
+        'https://67kbtiuxase3xqul.public.blob.vercel-storage.com/Screenshot%202024-11-30%20at%201.32.59%20PM-S9Ikgy6XcpBDq8fGZgxzRFoUPtIlYc.png',
     },
     {
-      title: 'Aceternity UI',
-      link: 'https://ui.aceternity.com',
+      title: 'Linkalock',
+      link: 'https://www.linkalock.com/',
       thumbnail:
-        'https://aceternity.com/images/products/thumbnails/new/aceternityui.png',
+        'https://67kbtiuxase3xqul.public.blob.vercel-storage.com/Screenshot%202024-11-30%20at%201.35.48%20PM-Ve4deBfq9G0oifZodPrSKMqBkZ4RAG.png',
     },
     {
-      title: 'Tailwind Master Kit',
-      link: 'https://tailwindmasterkit.com',
+      title: 'Gluten Free Thailand',
+      link: 'https://gfthailand.vercel.app/',
       thumbnail:
-        'https://aceternity.com/images/products/thumbnails/new/tailwindmasterkit.png',
-    },
-    {
-      title: 'SmartBridge',
-      link: 'https://smartbridgetech.com',
-      thumbnail:
-        'https://aceternity.com/images/products/thumbnails/new/smartbridge.png',
-    },
-    {
-      title: 'Renderwork Studio',
-      link: 'https://renderwork.studio',
-      thumbnail:
-        'https://aceternity.com/images/products/thumbnails/new/renderwork.png',
-    },
-
-    {
-      title: 'Creme Digital',
-      link: 'https://cremedigital.com',
-      thumbnail:
-        'https://aceternity.com/images/products/thumbnails/new/cremedigital.png',
-    },
-    {
-      title: 'Golden Bells Academy',
-      link: 'https://goldenbellsacademy.com',
-      thumbnail:
-        'https://aceternity.com/images/products/thumbnails/new/goldenbellsacademy.png',
-    },
-    {
-      title: 'Invoker Labs',
-      link: 'https://invoker.lol',
-      thumbnail:
-        'https://aceternity.com/images/products/thumbnails/new/invoker.png',
-    },
-    {
-      title: 'E Free Invoice',
-      link: 'https://efreeinvoice.com',
-      thumbnail:
-        'https://aceternity.com/images/products/thumbnails/new/efreeinvoice.png',
+        'https://67kbtiuxase3xqul.public.blob.vercel-storage.com/Screenshot%202024-11-30%20at%201.40.10%20PM-XpWJyjUP4CW77JwpnXMHccBgypuEh4.png',
     },
   ]
 
   return (
     <>
       <Hero products={products} />
-      {/* <FeaturesSection /> */}
       <Footer />
     </>
   )

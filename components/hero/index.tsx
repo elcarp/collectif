@@ -30,9 +30,8 @@ export default function HeroParallax({
     thumbnail: string
   }[]
 }) {
-  const firstRow = products.slice(0, 5)
-  const secondRow = products.slice(5, 10)
-  const thirdRow = products.slice(10, 15)
+  const firstRow = products.slice(0, 3)
+  const secondRow = products.slice(3, 6)
   const ref = React.useRef(null)
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -96,7 +95,7 @@ export default function HeroParallax({
             />
           ))}
         </motion.div>
-        <motion.div className='flex flex-row-reverse space-x-reverse space-x-20'>
+        {/* <motion.div className='flex flex-row-reverse space-x-reverse space-x-20'>
           {thirdRow.map((product) => (
             <ProductCard
               product={product}
@@ -104,7 +103,7 @@ export default function HeroParallax({
               key={product.title}
             />
           ))}
-        </motion.div>
+        </motion.div> */}
       </motion.div>
     </div>
   )
@@ -148,6 +147,7 @@ export const ProductCard = ({
       className='group/product h-96 w-[30rem] relative flex-shrink-0'>
       <Link
         href={product.link}
+        rel='noreferrer'
         className='block group-hover/product:shadow-2xl '>
         <Image
           src={product.thumbnail}
