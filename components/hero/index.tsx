@@ -112,10 +112,12 @@ export default function HeroParallax({
 export const Header = () => {
   return (
     <div className='max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full  left-0 top-0'>
-      <h1 className={`${stylish.className} text-center text-2xl md:text-7xl font-bold dark:text-white`}>
+      <h1
+        className={`${stylish.className} text-center text-2xl md:text-7xl font-bold dark:text-white`}>
         Collectif Thailand
       </h1>
-      <p className={`${roboto.className} max-w-2xl mx-auto text-center text-base md:text-lg mt-8 dark:text-neutral-200`}>
+      <p
+        className={`${roboto.className} max-w-2xl mx-auto text-center text-base md:text-lg mt-8 dark:text-neutral-200`}>
         An independent co-operative of talented developers, designers, project
         managers, QA and more. Your end-to-end partner for fast websites, mobile
         and software applications.

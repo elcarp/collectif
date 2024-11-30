@@ -44,7 +44,9 @@ export default function Home() {
 
   return (
     <>
-      <Hero products={products} />
+      <section className='bg-gray-600 text-white'>
+        <Hero products={products} />
+      </section>
       <Footer />
     </>
   )
