@@ -9,6 +9,7 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import favicon from '~app/favicon.ico'
 
 export default function Footer() {
   const pages = [
@@ -66,16 +67,13 @@ export default function Footer() {
         </div>
         <div className='flex sm:flex-row flex-col justify-between mt-8 items-center w-full'>
           <p className='text-neutral-500 dark:text-neutral-400 mb-8 sm:mb-0'>
-            &copy; DevStudios LLABC
+            &copy; Collectif Thailand
           </p>
           <div className='flex gap-4'>
-            <Link href='#'>
-              <IconBrandTwitter className='h-6 w-6 text-neutral-500 dark:text-neutral-300' />
-            </Link>
-            <Link href='#'>
+            <Link href='https://www.linkedin.com/in/lise-carpenter-0773558/'>
               <IconBrandLinkedin className='h-6 w-6 text-neutral-500 dark:text-neutral-300' />
             </Link>
-            <Link href='#'>
+            <Link href='https://github.com/elcarp'>
               <IconBrandGithub className='h-6 w-6 text-neutral-500 dark:text-neutral-300' />
             </Link>
             <Link href='#'>
@@ -130,13 +128,10 @@ const Logo = () => {
     <Link
       href='/'
       className='font-normal flex space-x-2 items-center text-sm mr-4  text-black px-2 py-1  relative z-20'>
-      <Image
-        src='https://assets.aceternity.com/logo-dark.png'
-        alt='logo'
-        width={30}
-        height={30}
-      />
-      <span className='font-medium text-black dark:text-white'>DevStudio</span>
+      <Image src={favicon} alt='logo' width={30} height={30} />
+      <span className='font-medium text-black dark:text-white'>
+        Collectif Thailand
+      </span>
     </Link>
   )
 }
