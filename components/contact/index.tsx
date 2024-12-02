@@ -38,57 +38,72 @@ export default function ContactForm() {
       </div>
       <div className='relative mx-auto flex w-full max-w-2xl flex-col items-start gap-4 overflow-hidden rounded-3xl bg-gradient-to-b from-gray-100 to-gray-200 p-4 dark:from-neutral-900 dark:to-neutral-950 sm:p-10'>
         <Grid size={20} />
-        <div className='relative z-20 mb-4 w-full'>
-          <label
-            className='mb-2 inline-block text-sm font-medium text-neutral-600 dark:text-neutral-300'
-            htmlFor='name'>
-            Full name
-          </label>
-          <input
-            id='name'
-            type='text'
-            className='h-10 w-full rounded-md border border-transparent bg-white pl-4 text-sm text-neutral-700 placeholder-neutral-500 shadow-input outline-none focus:outline-none focus:ring-2 focus:ring-neutral-800 active:outline-none dark:border-neutral-800 dark:bg-neutral-800 dark:text-white'
-          />
-        </div>
-        <div className='relative z-20 mb-4 w-full'>
-          <label
-            className='mb-2 inline-block text-sm font-medium text-neutral-600 dark:text-neutral-300'
-            htmlFor='email'>
-            Email Address
-          </label>
-          <input
-            id='email'
-            type='email'
-            className='h-10 w-full rounded-md border border-transparent bg-white pl-4 text-sm text-neutral-700 placeholder-neutral-500 shadow-input outline-none focus:outline-none focus:ring-2 focus:ring-neutral-800 active:outline-none dark:border-neutral-800 dark:bg-neutral-800 dark:text-white'
-          />
-        </div>
-        <div className='relative z-20 mb-4 w-full'>
-          <label
-            className='mb-2 inline-block text-sm font-medium text-neutral-600 dark:text-neutral-300'
-            htmlFor='company'>
-            Company
-          </label>
-          <input
-            id='company'
-            type='text'
-            className='h-10 w-full rounded-md border border-transparent bg-white pl-4 text-sm text-neutral-700 placeholder-neutral-500 shadow-input outline-none focus:outline-none focus:ring-2 focus:ring-neutral-800 active:outline-none dark:border-neutral-800 dark:bg-neutral-800 dark:text-white'
-          />
-        </div>
-        <div className='relative z-20 mb-4 w-full'>
-          <label
-            className='mb-2 inline-block text-sm font-medium text-neutral-600 dark:text-neutral-300'
-            htmlFor='message'>
-            Message
-          </label>
-          <textarea
-            id='message'
-            rows={5}
-            className='w-full rounded-md border border-transparent bg-white pl-4 pt-4 text-sm text-neutral-700 placeholder-neutral-500 shadow-input outline-none focus:outline-none focus:ring-2 focus:ring-neutral-800 active:outline-none dark:border-neutral-800 dark:bg-neutral-800 dark:text-white'
-          />
-        </div>
-        <button className='relative z-10 flex items-center justify-center rounded-md border border-transparent bg-neutral-800 px-4 py-2 text-sm font-medium text-white shadow-[0px_1px_0px_0px_#FFFFFF20_inset] transition duration-200 hover:bg-neutral-900 md:text-sm'>
-          Submit
-        </button>
+        <form
+          action='https://public.herotofu.com/v1/b4649600-b05e-11ef-b6f4-4774a3a77de8'
+          method='post'
+          acceptCharset='UTF-8'
+          className='relative z-20 w-full space-y-4'>
+          <div className='w-full'>
+            <label
+              className='mb-2 inline-block text-sm font-medium text-neutral-600 dark:text-neutral-300'
+              htmlFor='name'>
+              Full name
+            </label>
+            <input
+              id='name'
+              name='name'
+              type='text'
+              required
+              className='h-10 w-full rounded-md border border-transparent bg-white pl-4 text-sm text-neutral-700 placeholder-neutral-500 shadow-input outline-none focus:outline-none focus:ring-2 focus:ring-neutral-800 active:outline-none dark:border-neutral-800 dark:bg-neutral-800 dark:text-white'
+            />
+          </div>
+          <div className='w-full'>
+            <label
+              className='mb-2 inline-block text-sm font-medium text-neutral-600 dark:text-neutral-300'
+              htmlFor='email'>
+              Email Address
+            </label>
+            <input
+              id='email'
+              name='email'
+              type='email'
+              required
+              className='h-10 w-full rounded-md border border-transparent bg-white pl-4 text-sm text-neutral-700 placeholder-neutral-500 shadow-input outline-none focus:outline-none focus:ring-2 focus:ring-neutral-800 active:outline-none dark:border-neutral-800 dark:bg-neutral-800 dark:text-white'
+            />
+          </div>
+          <div className='w-full'>
+            <label
+              className='mb-2 inline-block text-sm font-medium text-neutral-600 dark:text-neutral-300'
+              htmlFor='company'>
+              Company
+            </label>
+            <input
+              id='company'
+              name='company'
+              type='text'
+              className='h-10 w-full rounded-md border border-transparent bg-white pl-4 text-sm text-neutral-700 placeholder-neutral-500 shadow-input outline-none focus:outline-none focus:ring-2 focus:ring-neutral-800 active:outline-none dark:border-neutral-800 dark:bg-neutral-800 dark:text-white'
+            />
+          </div>
+          <div className='w-full'>
+            <label
+              className='mb-2 inline-block text-sm font-medium text-neutral-600 dark:text-neutral-300'
+              htmlFor='message'>
+              Message
+            </label>
+            <textarea
+              id='message'
+              name='message'
+              rows={5}
+              required
+              className='w-full rounded-md border border-transparent bg-white pl-4 pt-4 text-sm text-neutral-700 placeholder-neutral-500 shadow-input outline-none focus:outline-none focus:ring-2 focus:ring-neutral-800 active:outline-none dark:border-neutral-800 dark:bg-neutral-800 dark:text-white'
+            />
+          </div>
+          <button
+            type='submit'
+            className='relative z-10 flex items-center justify-center rounded-md border border-transparent bg-neutral-800 px-4 py-2 text-sm font-medium text-white shadow-[0px_1px_0px_0px_#FFFFFF20_inset] transition duration-200 hover:bg-neutral-900 md:text-sm'>
+            Submit
+          </button>
+        </form>
       </div>
     </div>
   )
