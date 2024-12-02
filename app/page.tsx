@@ -1,3 +1,4 @@
+import ContactForm from '~components/contact'
 import Footer from '~components/footer'
 import Hero from '~components/hero'
 
@@ -47,8 +48,11 @@ export default function Home() {
       <section className='bg-gray-600 text-white'>
         <Hero products={products} />
       </section>
+      <section>
+        <ContactForm />
+      </section>
       <section className='bg-black'>
-      <Footer />
+        <Footer />
       </section>
     </>
   )
