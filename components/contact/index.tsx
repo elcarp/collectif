@@ -24,21 +24,6 @@ export default function ContactForm() {
           We look forward to discussing your project requirements.
         </p>
 
-        {/* <div className='mt-10 hidden flex-col items-center gap-4 md:flex-row lg:flex'>
-          <p className='text-sm text-neutral-500 dark:text-neutral-400'>
-            contact@yoursaas.ai
-          </p>
-
-          <div className='h-1 w-1 rounded-full bg-neutral-500 dark:bg-neutral-400' />
-          <p className='text-sm text-neutral-500 dark:text-neutral-400'>
-            +1 (800) 123 XX21
-          </p>
-          <div className='h-1 w-1 rounded-full bg-neutral-500 dark:bg-neutral-400' />
-
-          <p className='text-sm text-neutral-500 dark:text-neutral-400'>
-            lise.carpenter@gmail.com
-          </p>
-        </div> */}
         <div className='div relative mt-20 flex w-[600px] flex-shrink-0 -translate-x-10 items-center justify-center [perspective:800px] [transform-style:preserve-3d] sm:-translate-x-0 lg:-translate-x-32'>
           <Pin className='right-[-32px] top-[12px]' />
 
