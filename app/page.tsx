@@ -48,7 +48,7 @@ export default function Home() {
       <section className='bg-gray-600 text-white'>
         <Hero products={products} />
       </section>
-      <section>
+      <section id='contact'>
         <ContactForm />
       </section>
       <section className='bg-black'>

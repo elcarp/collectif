@@ -10,6 +10,7 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 import { Stylish, Roboto } from 'next/font/google'
+import { BackgroundGradient } from '~components/background_gradient'
 
 const stylish = Stylish({
   weight: '400',
@@ -67,7 +68,7 @@ export default function HeroParallax({
   return (
     <div
       ref={ref}
-      className='h-[300vh] pt-[17rem] pb-40 overflow-hidden  antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]'>
+      className='h-[300vh] pt-[10rem] pb-40 overflow-hidden  antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]'>
       <Header />
       <motion.div
         style={{
@@ -95,15 +96,6 @@ export default function HeroParallax({
             />
           ))}
         </motion.div>
-        {/* <motion.div className='flex flex-row-reverse space-x-reverse space-x-20'>
-          {thirdRow.map((product) => (
-            <ProductCard
-              product={product}
-              translate={translateX}
-              key={product.title}
-            />
-          ))}
-        </motion.div> */}
       </motion.div>
     </div>
   )
@@ -122,6 +114,13 @@ export const Header = () => {
         managers, QA and more. Your end-to-end partner for fast websites, mobile
         and software applications.
       </p>
+      <div className='mt-8 max-w-xs mx-auto'> 
+        <BackgroundGradient className='rounded-[22px] text-center p-4 bg-white dark:bg-zinc-900'>
+          <Link href='/#contact' className='w-32 mx-auto text-gray-800 text-center'>
+            Get in touch
+          </Link>
+        </BackgroundGradient>
+      </div>
     </div>
   )
 }
