@@ -28,60 +28,9 @@ export const Pin = ({ className }: { className?: string }) => {
           }}
           className='absolute left-1/2 top-1/2 ml-[0.09375rem] mt-4 -translate-x-1/2 -translate-y-1/2'>
           <>
-            <motion.div
-              initial={{
-                opacity: 0,
-                scale: 0,
-                x: '-50%',
-                y: '-50%',
-              }}
-              animate={{
-                opacity: [0, 1, 0.5, 0],
-                scale: 1,
-                z: 0,
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                delay: 0,
-              }}
-              className='absolute left-1/2 top-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-sky-500/[0.08] shadow-[0_8px_16px_rgb(0_0_0/0.4)] dark:bg-sky-500/[0.2]'></motion.div>
-            <motion.div
-              initial={{
-                opacity: 0,
-                scale: 0,
-                x: '-50%',
-                y: '-50%',
-              }}
-              animate={{
-                opacity: [0, 1, 0.5, 0],
-                scale: 1,
-                z: 0,
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                delay: 2,
-              }}
-              className='absolute left-1/2 top-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-sky-500/[0.08] shadow-[0_8px_16px_rgb(0_0_0/0.4)] dark:bg-sky-500/[0.2]'></motion.div>
-            <motion.div
-              initial={{
-                opacity: 0,
-                scale: 0,
-                x: '-50%',
-                y: '-50%',
-              }}
-              animate={{
-                opacity: [0, 1, 0.5, 0],
-                scale: 1,
-                z: 0,
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                delay: 4,
-              }}
-              className='absolute left-1/2 top-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-sky-500/[0.08] shadow-[0_8px_16px_rgb(0_0_0/0.4)] dark:bg-sky-500/[0.2]'></motion.div>
+            <PinMotionDiv delay={0} />
+            <PinMotionDiv delay={2} />
+            <PinMotionDiv delay={4} />
           </>
         </div>
 
@@ -96,13 +45,32 @@ export const Pin = ({ className }: { className?: string }) => {
   )
 }
 
-export const FeatureIconContainer = ({
-  children,
-  className,
-}: {
+const PinMotionDiv: React.FC<{ delay: number }> = ({ delay }) => (
+  <motion.div
+    initial={{
+      opacity: 0,
+      scale: 0,
+      x: '-50%',
+      y: '-50%',
+    }}
+    animate={{
+      opacity: [0, 1, 0.5, 0],
+      scale: 1,
+      z: 0,
+    }}
+    transition={{
+      duration: 6,
+      repeat: Infinity,
+      delay: delay,
+    }}
+    className='absolute left-1/2 top-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-sky-500/[0.08] shadow-[0_8px_16px_rgb(0_0_0/0.4)] dark:bg-sky-500/[0.2]'
+  />
+)
+
+export const FeatureIconContainer: React.FC<{
   children: React.ReactNode
   className?: string
-}) => {
+}> = ({ children, className }) => {
   return (
     <div
       className={cn(
@@ -123,7 +91,10 @@ export const FeatureIconContainer = ({
   )
 }
 
-export const Grid = ({
+export const Grid: React.FC<{
+  pattern?: number[][]
+  size?: number
+}> = ({
   pattern = [
     [8, 2],
     [9, 3],
@@ -132,9 +103,6 @@ export const Grid = ({
     [8, 6],
   ],
   size = 20,
-}: {
-  pattern?: number[][]
-  size?: number
 }) => {
   return (
     <div className='pointer-events-none absolute left-1/2 top-0 -ml-20 -mt-2 h-full w-full [mask-image:linear-gradient(white,transparent)]'>
@@ -152,7 +120,22 @@ export const Grid = ({
   )
 }
 
-export function GridPattern({ width, height, x, y, squares, ...props }: any) {
+interface GridPatternProps extends React.SVGProps<SVGSVGElement> {
+  width: number
+  height: number
+  x: string
+  y: string
+  squares: number[][]
+}
+
+export function GridPattern({
+  width,
+  height,
+  x,
+  y,
+  squares,
+  ...props
+}: GridPatternProps) {
   const patternId = useId()
 
   return (
@@ -176,14 +159,14 @@ export function GridPattern({ width, height, x, y, squares, ...props }: any) {
       />
       {squares && (
         <svg x={x} y={y} className='overflow-visible'>
-          {squares.map(([x, y]: any, idx: number) => (
+          {squares.map(([squareX, squareY], idx) => (
             <rect
               strokeWidth='0'
-              key={`${x}-${y}-${idx}`}
+              key={`${squareX}-${squareY}-${idx}`}
               width={width + 1}
               height={height + 1}
-              x={x * width}
-              y={y * height}
+              x={squareX * width}
+              y={squareY * height}
             />
           ))}
         </svg>
