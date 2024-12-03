@@ -2,6 +2,17 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Grid, Pin } from './ContactFormComponents'
+import { Stylish, Roboto } from 'next/font/google'
+
+const stylish = Stylish({
+  weight: '400',
+  subsets: ['latin'],
+})
+
+const roboto = Roboto({
+  weight: '400',
+  subsets: ['latin'],
+})
 
 export default function ContactForm() {
   const [isClient, setIsClient] = useState(false)
@@ -17,10 +28,12 @@ export default function ContactForm() {
   return (
     <div className='mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-4 py-10 md:px-6 md:py-20 lg:grid-cols-2'>
       <div className='relative flex flex-col items-center overflow-hidden lg:items-start'>
-        <h2 className='mt-9 bg-gradient-to-b from-neutral-800 to-neutral-900 bg-clip-text text-left text-xl font-bold text-transparent dark:from-neutral-200 dark:to-neutral-300 md:text-3xl lg:text-5xl'>
+        <h2
+          className={`${stylish.className} mt-9 bg-gradient-to-b from-neutral-800 to-neutral-900 bg-clip-text text-left text-xl font-bold text-transparent dark:from-neutral-200 dark:to-neutral-300 md:text-3xl lg:text-5xl`}>
           Contact us
         </h2>
-        <p className='mt-8 max-w-lg text-center text-base text-neutral-600 dark:text-neutral-400 md:text-left'>
+        <p
+          className={`${roboto.className} mt-8 max-w-lg text-center text-base text-neutral-600 dark:text-neutral-400 md:text-left`}>
           We look forward to discussing your project requirements.
         </p>
 
